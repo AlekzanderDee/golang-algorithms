@@ -16,7 +16,7 @@ package main
 import "fmt"
 
 func isPalindrome(s string) bool {
-	var l, r int = 0, len(s) - 1
+	var l, r = 0, len(s) - 1
 	for l < r {
 		if s[l] != s[r] {
 			return false
@@ -28,19 +28,15 @@ func isPalindrome(s string) bool {
 }
 
 func partition(s string) [][]string {
-	if len(s) < 2 {
-		return [][]string{{s,}}
-	}
-
 	res := [][]string{}
 	if isPalindrome(s) {
 		res = append(res, []string{s})
 	}
-	for pos := 1; pos < len(s); pos++ {
+	strLen := len(s)
+	for pos := 1; pos < strLen; pos++ {
 		leftStr := s[:pos]
-		rightStr := s[pos:]
-
 		if isPalindrome(leftStr) {
+			rightStr := s[pos:]
 			for _, palindrome := range partition(rightStr) {
 				s := []string{leftStr, }
 				s = append(s, palindrome...)
