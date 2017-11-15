@@ -64,7 +64,7 @@ func sliceFromLl(ll *ListNode) []int {
 func reverseKGroup(head *ListNode, k int) *ListNode {
 	fakeHead := &ListNode{}
 	// pointer that points to the last processed node in initial list (last reversed)
-	newEnd := fakeHead
+	tail := fakeHead
 	fakeHead.Next = head
 
 	// first pointer will traverse thru the list
@@ -110,9 +110,9 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 		node.Next = secondPointer
 
 		// connecting new reversed list and prior part of already processed list
-		newEnd.Next = revertedListHead.Next
-		// update newEnd with the last processed node
-		newEnd = node
+		tail.Next = revertedListHead.Next
+		// update tail with the last processed node
+		tail = node
 	}
 
 	return fakeHead.Next
